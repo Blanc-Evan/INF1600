@@ -7,35 +7,35 @@ adr_fibo:
 .globl fibo
 
 fibo:
-movl 4(%esp),%edi           #Valeur de n
+   movl 4(%esp),%edi           #Valeur de n
 
-push %ebp
-movl %esp,%ebp
-push %ebx      
-             
-###
-#votre programme ici
-movl %edi, %ecx
-movl adr_fibo, %eax
-movl $0, %eax
-addl $4, %eax
-movl $1, %eax
+   push %ebp
+   movl %esp,%ebp
+   push %ebx      
+               
+   ###
+   #votre programme ici
+   movl %edi, %ecx
+   movl adr_fibo, %eax
+   movl $0, %eax
+   addl $4, %eax
+   movl $1, %eax
 
-boucle:
-addl $4, %eax
-movl -8(%eax), %eax
-addl -4(%eax), %eax
+   boucle:
+      addl $4, %eax
+      movl -8(%eax), %eax
+      addl -4(%eax), %eax
 
-addl $4, adr_fibo 
-movl %eax, adr_fibo
+      addl $4, adr_fibo 
+      movl %eax, adr_fibo
 
-loop boucle
+      loop boucle
 
-###
+   ###
 
-pop %ebx
-pop %ebp
-ret
+   pop %ebx
+   pop %ebp
+   ret
 
 
 
