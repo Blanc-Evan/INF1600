@@ -22,8 +22,8 @@ fibo:
 
    boucle:
       addl $4, %ebx
-      movl -8(%ebx), (%ebx)
-      addl -4(%ebx), (%ebx)
+      movl -8(%ebx), %ebx
+      addl -4(%ebx), %ebx
 
       inc %eax
       loop boucle

@@ -22,9 +22,12 @@ fibo_mod_m:
     movl $0, %eax
 
     boucle:
-        addl $4, %ebx
-        movl -8(%ebx), (%ebx)
-        addl -4(%ebx), (%ebx)
+      addl $4, %ebx
+      pushl %eax
+      movl -8(%ebx), %eax
+      addl -4(%ebx), %eax
+      movl %eax,(%ebx)
+      popl %eax
 
         addl $4, adr_fibo_mod_m
         pushl %ebx
@@ -35,7 +38,7 @@ fibo_mod_m:
             jg mod              #dès qu'on passe dans les négatifs
 
 
-        addl %esi, (%ebx)     # on rajoute m pour avoir le mod
+        addl %esi, %ebx    # on rajoute m pour avoir le mod
 
         popl %ebx
         inc %eax 

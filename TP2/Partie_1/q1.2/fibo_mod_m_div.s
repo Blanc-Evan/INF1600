@@ -23,13 +23,19 @@ fibo_mod_m_div:
 
    boucle:
       addl $4, %ebx
-      movl -8(%ebx), (%ebx)
-      addl -4(%ebx), (%ebx)
+      pushl %eax
+      movl -8(%ebx), %eax
+      addl -4(%ebx), %eax
+      movl %eax,(%ebx)
+      popl %eax
 
       pushl %ebx
-      div %esi, %ebx
+      pushl %eax
+      movl %esi, %eax
+      div %ebx
+      popl %eax
       popl %ebx
-      movl %edx, (%ebx)
+      movl %edx, %ebx
 
       inc %eax
       loop boucle
