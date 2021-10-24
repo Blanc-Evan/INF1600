@@ -24,8 +24,12 @@ push %ebx
 
    boucle:
       addl $4, %ebx
-      movl -8(%ebx), (%ebx)
-      addl -4(%ebx), (%ebx)
+      pushl %eax
+      movl -8(%ebx), %eax
+      addl -4(%ebx), %eax
+      movl %eax,(%ebx)
+      popl %eax
+
 
       div %esi
       movl %edx, (%ebx)

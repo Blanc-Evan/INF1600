@@ -24,10 +24,13 @@ addl $4, %ebx
 movl $1, %ebx
 
 boucle:
-   movl -4(%ebx), %eax
-   addl (%ebx), %eax      
-   addl $4, %ebx
-   movl %eax, %ebx   #on se sert d'%ebx pour fibo
+      addl $4, %ebx
+      pushl %eax
+      movl -8(%ebx), %eax
+      addl -4(%ebx), %eax
+      movl %eax,(%ebx)
+      popl %eax
+
 
    div %esi
    addl $4, adr_pisano
