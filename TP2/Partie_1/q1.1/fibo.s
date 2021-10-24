@@ -16,19 +16,16 @@ fibo:
    ###
    #votre programme ici
    movl %edi, %ecx
-   movl adr_fibo, %eax
+   movl adr_fibo, %ebx
    movl $0, %eax
-   addl $4, %eax
-   movl $1, %eax
+   addl $4, %ebx
 
    boucle:
-      addl $4, %eax
-      movl -8(%eax), %eax
-      addl -4(%eax), %eax
+      addl $4, %ebx
+      movl -8(%ebx), (%ebx)
+      addl -4(%ebx), (%ebx)
 
-      addl $4, adr_fibo 
-      movl %eax, adr_fibo
-
+      inc %eax
       loop boucle
 
    ###
