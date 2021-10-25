@@ -56,6 +56,8 @@ fin:
    subl %ecx, %edi
    subl $2, %edi
    movl %edi, %eax
+   popl  %ebx
+   popl  %ebp   
    ret
 ###
 
