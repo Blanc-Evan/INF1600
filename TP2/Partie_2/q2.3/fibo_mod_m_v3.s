@@ -17,9 +17,9 @@ push %ebx
 ###
 #votre programme ici
    movl %edi, %ecx
-   movl adr_v3, %ebx
+   movl $adr_v3, %ebx
    movl $0, %eax
-   movl adr_v3, %ebx
+   movl $adr_v3, %ebx
    addl $4, %ebx
 
    boucle:

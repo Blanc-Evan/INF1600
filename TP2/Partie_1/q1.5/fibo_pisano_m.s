@@ -24,31 +24,40 @@ addl $4, %ebx
 movl $1, %ebx
 
 boucle:
-      addl $4, %ebx
-      pushl %eax
-      movl -8(%ebx), %eax
-      addl -4(%ebx), %eax
-      movl %eax,(%ebx)
-      popl %eax
+    movl %edi, %ecx
+    leal adr_fibo_mod_m, %ebx
+    movl (%ebx), %eax
+    addl $8, %eax
+    movl $0, (%edx)
+    addl $4 ,%edx
+    movl $1,(%edx)
+    addl $4 ,%edx
+    boucle:
 
+        movl -8(%edx), %ebx
+        addl -4(%edx), %ebx
+        movl %ebx,(%edx)
+        addl $4, %edx
 
-   div %esi
-   addl $4, adr_pisano
-   movl %edx, adr_pisano
+        pushl %edx
+        pushl %eax
+        movl -4(%edx), %eax
+        div %esi
+        popl %eax
+        movl %edx, %eax
+        popl %edx
 
-   test:
-      subl $4, adr_pisano
-      cmpl $0, adr_pisano
-      je if2
-      addl $4, adr_pisano
+       test:
+          cmpl $0, -4(%eax)
+          je if2
 
-loop boucle
+    addl $4, %eax
+    loop boucle
 
 jmp fin
 
 if2:
-   addl $4, adr_pisano
-   cmpl $1, adr_pisano
+   cmpl $1, (%eax)
    je fin
    loop boucle
 

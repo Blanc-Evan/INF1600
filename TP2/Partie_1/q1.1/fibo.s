@@ -12,24 +12,19 @@ fibo:
    push %ebp
    movl %esp,%ebp
    push %ebx      
-               
+
    ###
    #votre programme ici
    movl %edi, %ecx
-   movl adr_fibo, %ebx
-   movl $0, %eax
-   addl $4, %ebx
+   leal adr_fibo, %ebx
+   movl (%ebx), %edx
+   addl $8, %ebx
 
    boucle:
+      movl -8(%ebx), %edx
+      addl -4(%ebx), %edx
+      movl %edx,(%ebx)
       addl $4, %ebx
-      pushl %eax
-      movl -8(%ebx), %eax
-      addl -4(%ebx), %eax
-      movl %eax,(%ebx)
-      popl %eax
-
-
-      inc %eax
       loop boucle
 
    ###

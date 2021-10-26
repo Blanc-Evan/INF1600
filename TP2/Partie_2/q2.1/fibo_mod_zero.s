@@ -21,7 +21,7 @@ movl $0, %eax
 boucle:
    movl %esi, %ecx
 
-   cmpl $0, adr_pisano_m
+   cmpl $0, $adr_pisano_m
    je increment
 
 loop boucle

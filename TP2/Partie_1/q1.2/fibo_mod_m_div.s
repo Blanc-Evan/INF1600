@@ -16,29 +16,30 @@ fibo_mod_m_div:
 
    ###
    #votre programme ici
-   movl %edi, %ecx
-    movl adr_fibo_m_div, %ebx
-    addl $4, %ebx
-    movl $0, %eax
-
+    movl %edi, %ecx
+    leal adr_fibo_mod_m, %ebx
+    movl (%ebx), %eax
+    addl $8, %eax
+    movl $0, (%edx)
+    addl $4 ,%edx
+    movl $1,(%edx)
+    addl $4 ,%edx
    boucle:
-      addl $4, %ebx
-      pushl %eax
-      movl -8(%ebx), %eax
-      addl -4(%ebx), %eax
-      movl %eax,(%ebx)
-      popl %eax
 
-      pushl %ebx
-      pushl %eax
-      movl %esi, %eax
-      div %ebx
-      popl %eax
-      popl %ebx
-      movl %edx, %ebx
+    movl -8(%edx), %ebx
+    addl -4(%edx), %ebx
+    movl %ebx,(%edx)
+    addl $4, %edx
 
-      inc %eax
-      loop boucle
+    pushl %edx
+    pushl %eax
+    movl -4(%edx), %eax
+    div %esi
+    popl %eax
+    movl %edx, %eax
+    popl %edx
+    addl $4, %eax
+    loop boucle
 
    ###
 

@@ -17,34 +17,45 @@ fibo_mod_m:
     ###
     #votre programme ici
     movl %edi, %ecx
-    movl adr_fibo_mod_m, %ebx
-    addl $4, %ebx
-    movl $0, %eax
-
+    leal adr_fibo_mod_m, %ebx
+    movl (%ebx), %eax
+    addl $8, %eax
+    movl $0, (%edx)
+    addl $4 ,%edx
+    movl $1,(%edx)
+    addl $4 ,%edx
     boucle:
-      addl $4, %ebx
-      pushl %eax
-      movl -8(%ebx), %eax
-      addl -4(%ebx), %eax
-      movl %eax,(%ebx)
-      popl %eax
 
-        addl $4, adr_fibo_mod_m
-        pushl %ebx
+        movl -8(%edx), %ebx
+        addl -4(%edx), %ebx
+        movl %ebx,(%edx)
+        addl $4, %edx
 
+        pushl %edx
+        pushl %eax
+        movl -4(%edx), %eax
+        
         mod:
-            subl %esi, %ebx
-            cmp $0, %ebx
+            subl %esi, %edx
+            cmp $0, %edx
             jg mod              #dès qu'on passe dans les négatifs
 
 
-        addl %esi, %ebx    # on rajoute m pour avoir le mod
+        addl %esi, %edx    # on rajoute m pour avoir le mod
 
-        popl %ebx
-        inc %eax 
-        loop boucle
+        popl %eax
+        movl %edx, %eax
+        popl %edx
+        addl $4, %eax
+    loop boucle
+
     ###
 
-        popl  %ebx
-        popl  %ebp 
-        ret
+    popl  %ebx
+    popl  %ebp
+    ret
+
+
+
+
+
